@@ -97,8 +97,7 @@ function processData(text, params) {
 }
 
 // ---------- Відправлення відповіді ----------
-function reply(res, status, data) {
-  const body = JSON.stringify(data, null, 2);
+function finish(res, status, body) {
   res.writeHead(status, {
     'Content-Type': 'application/json; charset=utf-8',
     'Content-Length': Buffer.byteLength(body),
@@ -106,6 +105,24 @@ function reply(res, status, data) {
   res.end(body);
 }
 
+function reply(res, status, data) {
+  const body = JSON.stringify(data, null, 2);
+
+  if (!options.output) {
+    finish(res, status, body);
+    return;
+  }
+
+  // Спершу записуємо у файл, щоб помилку запису можна було повідомити клієнту
+  fs.writeFile(options.output, body, 'utf8', (err) => {
+    if (err) {
+      const errorBody = JSON.stringify({ error: 'Не вдалося записати відповідь у файл' }, null, 2);
+      finish(res, 500, errorBody);
+      return;
+    }
+    finish(res, status, body);
+  });
+}
 // ---------- Обробник запитів ----------
 function handleRequest(req, res) {
   try {
