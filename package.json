@@ -21,5 +21,8 @@
   "homepage": "https://github.com/Natalia-Kovtalo17/-lab4#readme",
   "engines": {
     "node": ">=22"
+  },
+  "dependencies": {
+    "commander": "^15.0.0"
   }
 }
