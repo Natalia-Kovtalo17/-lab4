@@ -1,0 +1,25 @@
+{
+  "name": "lab4",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js",
+    "dev": "node --watch main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Natalia-Kovtalo17/-lab4.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Natalia-Kovtalo17/-lab4/issues"
+  },
+  "homepage": "https://github.com/Natalia-Kovtalo17/-lab4#readme",
+  "engines": {
+    "node": ">=22"
+  }
+}
